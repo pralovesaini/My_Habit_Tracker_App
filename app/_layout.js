@@ -4,10 +4,12 @@ import { Tabs } from "expo-router";
 export default function layout() {
   return (
     <Tabs
+
       screenOptions={{
+        headerShown:false,
         tabBarStyle: {
           height: 60,
-          backgroundColor: "white",
+          backgroundColor: "#FAF2FC"
         },
         headerTitleAlign: "center",
         headerTitleStyle: {
@@ -22,7 +24,7 @@ export default function layout() {
           title: "Home",
           tabBarIcon: (color, size) => (
             <Ionicons name="home" size={size} color={color} />
-          ),
+          )
         }}
       />
       <Tabs.Screen
@@ -31,7 +33,7 @@ export default function layout() {
           title: "graph",
           tabBarIcon: (color, size) => (
             <Ionicons name="bar-chart-outline" size={size} color={color} />
-          ),
+          )
         }}
       />
     </Tabs>

@@ -66,6 +66,8 @@ export default function HomePage() {
     });
   }
   return (
+  <View style={{backgroundColor:"#FAF2FC"}}>
+
     <View style={styles.mainview}>
       <View style={styles.view1}>
         <Text
@@ -170,12 +172,16 @@ export default function HomePage() {
         modalOpen={modalOpen}
         setTasks={setTasks}
       />
+    </View>  
     </View>
+
   );
 }
 
 const styles = StyleSheet.create({
   mainview: {
+   marginTop:60,
+    paddingBottom:70,
     backgroundColor: "#FAF2FC",
     width: "100%",
     height: "100%",
@@ -191,18 +197,18 @@ const styles = StyleSheet.create({
     width: "90%",
     marginTop: 140,
     marginHorizontal: "auto",
-    borderRadius: 100,
+    borderRadius:90,
   },
   bar2: {
     backgroundColor: "purple",
     height: 20,
-    borderRadius: 100,
+    borderRadius: 90,
     alignItems: "flex-end",
   },
   disc: {
     height: "90%",
     aspectRatio: 1,
-    borderRadius: 100,
+    borderRadius: 50,
     backgroundColor: "white",
     right: 1,
     top: 1,
@@ -219,12 +225,12 @@ const styles = StyleSheet.create({
   },
   addButton: {
     position: "absolute",
-    bottom: 20,
+    bottom: 120,
     right: "50%",
     backgroundColor: "#AFA6E6",
     width: 60,
     aspectRatio: 1,
-    borderRadius: "100%",
+    borderRadius: "90%",
     marginBottom: 15,
     justifyContent: "center",
     boxShadow: "0px 0px 10px 0.3px grey",
@@ -240,7 +246,7 @@ const styles = StyleSheet.create({
   },
   newDay: {
     position: "absolute",
-    bottom: 30,
+    bottom: 120,
     right: "10%",
     marginBottom: 15,
     justifyContent: "center",
@@ -252,7 +258,7 @@ const styles = StyleSheet.create({
     boxShadow: "0px 0px 10px 0.3px grey",
     height: 45,
     width: 45,
-    borderRadius: 20,
+    borderRadius: 10,
     backgroundColor: "#AFA6E6",
     justifyContent: "center",
     alignItems: "center",
@@ -263,7 +269,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: "white",
     padding: 20,
-    borderRadius: 40,
+    borderRadius: 10,
     paddingBottom: 0,
     // height: 100,
     // boxShadow: "0px 0px 2px 1px black",

@@ -13,7 +13,7 @@ export default function Test() {
     });
   });
 
-  // Prepare labels and percentages
+ 
   const days = taskData.map((_, i) => `Day ${i + 1}`);
   const percentages = taskData.map((day) => {
     const total = day.length;
@@ -28,34 +28,69 @@ export default function Test() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Task Completion</Text>
+      <Text style={styles.title}>📊 Task Completion Overview</Text>
       {days.length === 0 ? (
-        <Text>No data to display</Text>
+        <Text style={styles.noData}>No data to display</Text>
       ) : (
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          <BarChart
-            data={data}
-            width={days.length * 80} // Scrollable width
-            height={250}
-            fromZero
-            showValuesOnTopOfBars
-            yAxisSuffix="%"
-            chartConfig={{
-              backgroundGradientFrom: "#fff",
-              backgroundGradientTo: "#fff",
-              color: () => "#4A90E2", // Blue bars
-              labelColor: () => "#333",
-              decimalPlaces: 0,
-            }}
-            verticalLabelRotation={20}
-          />
-        </ScrollView>
+        <View style={styles.card}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            <BarChart
+              data={data}
+              width={days.length * 90}
+              height={260}
+              
+              showValuesOnTopOfBars
+              yAxisSuffix="%"
+              style={styles.chart}
+              chartConfig={{
+                backgroundGradientFrom: "#f8faff",
+                backgroundGradientTo: "#f8faff",
+                color: (opacity = 1) => `rgba(74, 144, 226, ${opacity})`,
+                labelColor: () => "#555",
+                decimalPlaces: 0,
+                propsForVerticalLabels: { fontSize: 12 },
+                propsForBackgroundLines: { strokeDasharray: "3", stroke: "#ddd" },
+              }}
+              verticalLabelRotation={20}
+            />
+          </ScrollView>
+        </View>
       )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { margin: 20 },
-  title: { fontSize: 18, fontWeight: "bold", marginBottom: 10, textAlign: "center" },
+  container: { 
+    flex: 1, 
+    padding: 20, 
+    backgroundColor: "#f0f4f8" 
+  },
+  title: { 
+    fontSize: 20, 
+    fontWeight: "700", 
+    marginBottom: 15, 
+    textAlign: "center", 
+    color: "#2c3e50" 
+  },
+  noData: { 
+    textAlign: "center", 
+    marginTop: 50, 
+    fontSize: 16, 
+    color: "#999" 
+  },
+  card: {
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    padding: 10,
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 3,
+  },
+  chart: {
+    borderRadius: 12,
+    marginVertical: 8,
+  },
 });

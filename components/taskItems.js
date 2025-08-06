@@ -68,6 +68,7 @@ export default function TaskItems({
       arr[index].title = title;
       updateTodaysTasks(arr);
       AsyncStorage.getItem("taskData").then(function (data) {
+        
         const newArr = JSON.parse(data);
         newArr[newArr.length - 1] = arr;
         AsyncStorage.setItem("taskData", JSON.stringify(newArr));
@@ -151,16 +152,16 @@ export default function TaskItems({
             value={title}
             placeholder="Enter an Item here"
             weight="bold"
-            padding={20}
-            fontSize={24}
+            padding={10}
+            fontSize={20}
             onChangeText={onChange}
           />
           <TouchableOpacity style={styles.submit} onPress={update}>
-            <Text style={{ fontSize: 26, textAlign: "center" }}>update</Text>
+            <Text style={{ fontSize: 20, textAlign: "center" }}>Update</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.cross} onPress={close}>
-            <Text style={{ fontSize: 24, textAlign: "center" }}>Close</Text>
+            <Text style={{ fontSize: 20, textAlign: "center" }}>Close</Text>
           </TouchableOpacity>
         </View>
       </Modal>
@@ -173,27 +174,27 @@ const styles = StyleSheet.create({
     height: 180,
     width: 320,
     margin: "auto",
-    borderWidth: 1,
+    borderWidth: 0.1,
     backgroundColor: "#F6EBF9",
     boxShadow: "0px 0px 10px 0.3px grey",
-    borderRadius: 40,
+    borderRadius: 10,
   },
   cross: {
     flex: 1,
-    borderBottomLeftRadius: 40,
-    borderBottomRightRadius: 40,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
     justifyContent: "center",
   },
   textInput: {
-    height: 80,
+    height: 50,
     backgroundColor: "#D2DEEE",
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
   submit: {
     flex: 1,
     justifyContent: "center",
-    borderWidth: 1,
+    borderWidth: 0.2,
     backgroundColor: "#ECE2F3",
   },
 });

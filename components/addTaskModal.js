@@ -67,8 +67,8 @@ export default function AddTaskModal({
           value={title}
           placeholder="Enter an Item here"
           weight="bold"
-          padding={20}
-          fontSize={24}
+          padding={5}
+          fontSize={20}
           onChangeText={onChange}
         />
         <TouchableOpacity style={styles.submit} onPress={submit}>
@@ -88,27 +88,28 @@ const styles = StyleSheet.create({
     height: 180,
     width: 320,
     margin: "auto",
-    borderWidth: 1,
+    borderWidth: 0.2,
     backgroundColor: "#F6EBF9",
     boxShadow: "0px 0px 10px 0.3px grey",
-    borderRadius: 40,
+    borderRadius: 10,
   },
   cross: {
     flex: 1,
-    borderBottomLeftRadius: 40,
-    borderBottomRightRadius: 40,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
     justifyContent: "center",
+    borderWidth:0.2,
   },
   textInput: {
-    height: 80,
+    height: 50,
     backgroundColor: "#D2DEEE",
-    borderTopLeftRadius: 40,
-    borderTopRightRadius: 40,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
   submit: {
     flex: 1,
     backgroundColor: "#ECE2F3",
     justifyContent: "center",
-    borderWidth: 1,
+    borderWidth: 0.2,
   },
 });
