@@ -65,7 +65,7 @@ export default function TaskItems({
       const arr = [...prev];
       arr[index].title = title;
       updateTodaysTasks(arr);
-      return arr; // Fixed: Return the updated array
+      return arr; 
     });
     setTitle("");
     close();

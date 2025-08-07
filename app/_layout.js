@@ -23,16 +23,16 @@ export default function layout() {
         options={{
           title: "Home",
           tabBarIcon: (color, size) => (
-            <Ionicons name="home" size={size} color={color} />
+            <Ionicons name="home" size={18} color={color} />
           )
         }}
       />
       <Tabs.Screen
         name="test"
         options={{
-          title: "graph",
+          title: "Activity",
           tabBarIcon: (color, size) => (
-            <Ionicons name="bar-chart-outline" size={size} color={color} />
+            <Ionicons name="bar-chart-outline" size={18} color={color} />
           )
         }}
       />

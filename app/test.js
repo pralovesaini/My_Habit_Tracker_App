@@ -62,8 +62,9 @@ export default function Test() {
 
 const styles = StyleSheet.create({
   container: { 
+    marginTop:60,
     flex: 1, 
-    padding: 20, 
+    padding: 15, 
     backgroundColor: "#f0f4f8" 
   },
   title: { 
@@ -81,8 +82,8 @@ const styles = StyleSheet.create({
   },
   card: {
     backgroundColor: "#fff",
-    borderRadius: 12,
-    padding: 10,
+    
+    padding: 5,
     shadowColor: "#000",
     shadowOpacity: 0.08,
     shadowRadius: 6,
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   chart: {
-    borderRadius: 12,
+    
     marginVertical: 8,
   },
 });
