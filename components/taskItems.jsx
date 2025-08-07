@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+
 export default function TaskItems({
   item,
   isLastIndex,
@@ -25,17 +26,14 @@ export default function TaskItems({
       AsyncStorage.setItem("taskData", JSON.stringify(newArr));
     });
   }
+  
   function toggleComplete() {
     const arr = [...items];
     arr[index].isCompleted = !arr[index].isCompleted;
     setTasks(arr);
     updateTodaysTasks(arr);
-    AsyncStorage.getItem("taskData").then(function (data) {
-      const newArr = JSON.parse(data);
-      newArr[newArr.length - 1] = arr;
-      AsyncStorage.setItem("taskData", JSON.stringify(newArr));
-    });
   }
+  
   function deleteItem() {
     const arr = [...items];
     const filteredArr = arr.filter(function (_, i) {
@@ -44,35 +42,30 @@ export default function TaskItems({
 
     setTasks(filteredArr);
     updateTodaysTasks(filteredArr);
-    AsyncStorage.getItem("taskData").then(function (data) {
-      const newArr = JSON.parse(data);
-      newArr[newArr.length - 1] = arr;
-      AsyncStorage.setItem("taskData", JSON.stringify(newArr));
-    });
   }
+  
   const [modalOpen, setModalOpen] = useState(false);
   const [title, setTitle] = useState(item.title || "");
+  
   function openModal() {
     setTitle(item.title);
     setModalOpen(true);
   }
+  
   function close() {
     setModalOpen(false);
   }
+  
   function onChange(value) {
     setTitle(value);
   }
+  
   function update() {
     setTasks(function (prev) {
       const arr = [...prev];
       arr[index].title = title;
       updateTodaysTasks(arr);
-      AsyncStorage.getItem("taskData").then(function (data) {
-        
-        const newArr = JSON.parse(data);
-        newArr[newArr.length - 1] = arr;
-        AsyncStorage.setItem("taskData", JSON.stringify(newArr));
-      });
+      return arr; // Fixed: Return the updated array
     });
     setTitle("");
     close();

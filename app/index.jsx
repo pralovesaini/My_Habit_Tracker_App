@@ -27,9 +27,10 @@ export default function HomePage() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [tasks, setTasks] = useState([]);
+  
   useEffect(function () {
     AsyncStorage.getItem("taskData").then(function (data) {
-      if (data) {
+      if (data!=null) {
         const taskData = JSON.parse(data);
         setTasks(taskData[taskData.length - 1]);
       } else {
@@ -38,6 +39,7 @@ export default function HomePage() {
       }
     });
   }, []);
+  
   function openModal() {
     setModalOpen(true);
   }
@@ -66,122 +68,127 @@ export default function HomePage() {
     });
   }
   return (
-  <View style={{backgroundColor:"#FAF2FC"}}>
-
-    <View style={styles.mainview}>
-      <View style={styles.view1}>
-        <Text
-          style={{
-            fontSize: 44,
-          }}
-        >
-          {date}
-          {getsuffix(date)} {months[month]}
-        </Text>
-        <Text style={{ fontSize: 18, color: "grey" }}>{days[day]}</Text>
-      </View>
-      <View style={styles.bar1}>
-        <LinearGradient
-          colors={["#2d0076", "#c64bcf"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 0 }}
-          style={{ ...styles.bar2, width: `${percentage}%` }}
-        >
-          {compl > 0 && <View style={styles.disc} />}
-        </LinearGradient>
-      </View>
-      <View style={styles.completion}>
-        <Text style={styles.progressText}>{percentage}% Completed</Text>
-      </View>
-      <TouchableHighlight
-        underlayColor={"purple"}
-        style={{ ...styles.addButton, zIndex: 1 }}
-        onPress={openModal}
-      >
-        <View>
-          <PlusIcon size={24} weight="bold" color="white" />
-        </View>
-      </TouchableHighlight>
-      <TouchableHighlight style={styles.newDay} onPress={startNewDay}>
-        <View style={styles.hexagon}>
-          <Text style={{ fontSize: 36, fontWeight: 700, color: "white",margin:"auto" }}>
-            ⟲
+    <View style={{ backgroundColor: "#FAF2FC" }}>
+      <View style={styles.mainview}>
+        <View style={styles.view1}>
+          <Text
+            style={{
+              fontSize: 44,
+            }}
+          >
+            {date}
+            {getsuffix(date)} {months[month]}
           </Text>
+          <Text style={{ fontSize: 18, color: "grey" }}>{days[day]}</Text>
         </View>
-      </TouchableHighlight>
-      {incompl > 0 && (
-        <ScrollView
-          style={{ height: incompl > 3 ? 300 : "auto", borderRadius: 40 }}
+        <View style={styles.bar1}>
+          <LinearGradient
+            colors={["#2d0076", "#c64bcf"]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={{ ...styles.bar2, width: `${percentage}%` }}
+          >
+            {compl > 0 && <View style={styles.disc} />}
+          </LinearGradient>
+        </View>
+        <View style={styles.completion}>
+          <Text style={styles.progressText}>{percentage}% Completed</Text>
+        </View>
+        <TouchableHighlight
+          underlayColor={"purple"}
+          style={{ ...styles.addButton, zIndex: 1 }}
+          onPress={openModal}
         >
-          <View style={{ ...styles.container }}>
-            {tasks.map((item, i) => {
-              if (!item.isCompleted)
-                return (
-                  <TaskItems
-                    key={i}
-                    item={item}
-                    isLastIndex={tasks.length - 1 === i}
-                    items={tasks}
-                    index={i}
-                    setTasks={setTasks}
-                    openModal={openModal}
-                    setModalOpen={setModalOpen}
-                    title={item.title}
-                  />
-                );
-            })}
+          <View>
+            <PlusIcon size={24} weight="bold" color="white" />
           </View>
-        </ScrollView>
-      )}
-      {compl > 0 && (
-        <Text
-          style={{
-            marginTop: 20,
-            marginBottom: 10,
-            marginLeft: 26,
-            fontSize: 16,
-            fontWeight: 600,
-          }}
-        >
-          Completed
-        </Text>
-      )}
-      {compl > 0 && (
-        <ScrollView style={{ height: compl > 3 ? 250 : " auto" }}>
-          <View style={{ ...styles.completed }}>
-            {tasks.map((item, i) => {
-              if (item.isCompleted)
-                return (
-                  <TaskItems
-                    key={i}
-                    item={item}
-                    isLastIndex={tasks.length - 1 === i}
-                    setTasks={setTasks}
-                    items={tasks}
-                    index={i}
-                    openModal={openModal}
-                    setModalOpen={setModalOpen}
-                  />
-                );
-            })}
+        </TouchableHighlight>
+        <TouchableHighlight style={styles.newDay} onPress={startNewDay}>
+          <View style={styles.hexagon}>
+            <Text
+              style={{
+                fontSize: 36,
+                fontWeight: 700,
+                color: "white",
+                margin: "auto",
+              }}
+            >
+              ⟲
+            </Text>
           </View>
-        </ScrollView>
-      )}
-      <AddTaskModal
-        setModalOpen={setModalOpen}
-        modalOpen={modalOpen}
-        setTasks={setTasks}
-      />
-    </View>  
+        </TouchableHighlight>
+        {incompl > 0 && (
+          <ScrollView
+            style={{ height: incompl > 3 ? 300 : "auto", borderRadius: 40 }}
+          >
+            <View style={{ ...styles.container }}>
+              {tasks.map((item, i) => {
+                if (!item.isCompleted)
+                  return (
+                    <TaskItems
+                      key={i}
+                      item={item}
+                      isLastIndex={tasks.length - 1 === i}
+                      items={tasks}
+                      index={i}
+                      setTasks={setTasks}
+                      openModal={openModal}
+                      setModalOpen={setModalOpen}
+                      title={item.title}
+                    />
+                  );
+              })}
+            </View>
+          </ScrollView>
+        )}
+        {compl > 0 && (
+          <Text
+            style={{
+              marginTop: 20,
+              marginBottom: 10,
+              marginLeft: 26,
+              fontSize: 16,
+              fontWeight: 600,
+            }}
+          >
+            Completed
+          </Text>
+        )}
+        {compl > 0 && (
+          <ScrollView style={{ height: compl > 3 ? 250 : " auto" }}>
+            <View style={{ ...styles.completed }}>
+              {tasks.map((item, i) => {
+                if (item.isCompleted)
+                  return (
+                    <TaskItems
+                      key={i}
+                      item={item}
+                      isLastIndex={tasks.length - 1 === i}
+                      setTasks={setTasks}
+                      items={tasks}
+                      index={i}
+                      openModal={openModal}
+                      setModalOpen={setModalOpen}
+                    />
+                  );
+              })}
+            </View>
+          </ScrollView>
+        )}
+        <AddTaskModal
+          setModalOpen={setModalOpen}
+          modalOpen={modalOpen}
+          setTasks={setTasks}
+        />
+      </View>
     </View>
-
   );
 }
 
 const styles = StyleSheet.create({
   mainview: {
-   marginTop:60,
-    paddingBottom:70,
+    marginTop: 60,
+    paddingBottom: 70,
     backgroundColor: "#FAF2FC",
     width: "100%",
     height: "100%",
@@ -197,7 +204,7 @@ const styles = StyleSheet.create({
     width: "90%",
     marginTop: 140,
     marginHorizontal: "auto",
-    borderRadius:90,
+    borderRadius: 90,
   },
   bar2: {
     backgroundColor: "purple",
