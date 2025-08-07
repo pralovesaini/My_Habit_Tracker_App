@@ -27,10 +27,10 @@ export default function HomePage() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [tasks, setTasks] = useState([]);
-  
+
   useEffect(function () {
     AsyncStorage.getItem("taskData").then(function (data) {
-      if (data!=null) {
+      if (data != null) {
         const taskData = JSON.parse(data);
         setTasks(taskData[taskData.length - 1]);
       } else {
@@ -39,7 +39,7 @@ export default function HomePage() {
       }
     });
   }, []);
-  
+
   function openModal() {
     setModalOpen(true);
   }
